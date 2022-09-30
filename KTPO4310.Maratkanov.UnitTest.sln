@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4310.Maratkanov.UnitTest", "KTPO4310.Maratkanov.UnitTest\KTPO4310.Maratkanov.UnitTest.csproj", "{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4310.Maratkanov.Lib", "KTPO4310.Maratkanov.Lib\KTPO4310.Maratkanov.Lib.csproj", "{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EC70CBD-158E-4E11-830D-D9E3D40DD6CA}
+	EndGlobalSection
+EndGlobal
