@@ -13,6 +13,62 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
     public class LogAnalyzerTests
     {
         [Test]
+        public void IsValidFileName_NameSupportedExtension_ReturnsTrue()
+        {
+            FakeExtensionManager fakeManager = new FakeExtensionManager();
+            fakeManager.WillBeValid = true;
+            ExtensionManagerFactory.SetManager(fakeManager);
+
+            LogAnalyzer log = new LogAnalyzer();
+
+
+            bool result = log.IsValidLogFileName("short.ext");
+            Assert.True(result);
+        }
+        [Test]
+        public void IsValidFileName_NoneSupportedExtension_ReturnsFalse()
+        {
+            FakeExtensionManager fakeManager = new FakeExtensionManager();
+            fakeManager.WillBeValid = false;
+            ExtensionManagerFactory.SetManager(fakeManager);
+            LogAnalyzer log = new LogAnalyzer();
+
+
+            bool result = log.IsValidLogFileName("short.wrng");
+            Assert.False(result);
+
+        }
+        [Test]
+        public void IsValidFileName_ExtManagerThrowsException_ReturnsFalse()
+        {
+            bool result;
+
+            try
+            {
+                FakeExtensionManager fakeManager = new FakeExtensionManager();
+                fakeManager.WillThrow = new Exception("Test-Exception");
+                ExtensionManagerFactory.SetManager(fakeManager);
+                LogAnalyzer log = new();
+                result = log.IsValidLogFileName("WhatADay.ext");
+                result = true;
+
+
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            Assert.False(result);
+        }
+
+        [TearDown]
+
+        public void AfterEachTest()
+        {
+            ExtensionManagerFactory.SetManager(null);
+        }
+
+        /*[Test]
         public void IsValidLogFileName_BadExtension_ReturnsFalse()
         {
             //Подготовка теста
@@ -76,6 +132,23 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
             analyzer.IsValidLogFileName(file);
 
             Assert.AreEqual(expected,analyzer.WasLastFileNameValid);
+        }*/
+    }
+    /// <summary>/// Поддельный менеджер расширений/// </summary>
+    internal class FakeExtensionManager: IExtensionManager
+    {
+        /// Это поле позволяет задать поддельный результат для метода isvalid        /// </summary>
+        public bool WillBeValid = false;
+        /// "Это поле помогает настроить поддельное исключение вызывамое в методе IsValid
+
+        public Exception WillThrow = null;
+
+        public bool IsValid(string fileName)
+        {  
+            if (WillThrow != null) throw WillThrow;
+
+            return WillBeValid;
         }
+
     }
 }

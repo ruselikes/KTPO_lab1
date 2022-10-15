@@ -12,21 +12,33 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
     {
         /// <summary> Проверка правильности имени к файлу</summary>
   
-        public bool WasLastFileNameValid { get; set; }
+      
+    
+      
+        public LogAnalyzer()
+        {
+            
+        }
         public bool IsValidLogFileName(string fileName)
         {
-            WasLastFileNameValid = false;
-            if (string.IsNullOrEmpty(fileName))
-            {
-                throw new ArgumentException("имя файла должно быть задано");
-            }
-            if (!fileName.EndsWith(".MARATKANOVRD", StringComparison.CurrentCultureIgnoreCase))
-            {
-                return false;
-            }         
-            
-            
-            return true;
+
+            IExtensionManager IExtMan = ExtensionManagerFactory.Create();
+            return IExtMan.IsValid(fileName);
+
+            /* WasLastFileNameValid = false;
+             if (string.IsNullOrEmpty(fileName))
+             {
+                 throw new ArgumentException("имя файла должно быть задано");
+             }
+             if (!fileName.EndsWith(".MARATKANOVRD", StringComparison.CurrentCultureIgnoreCase))
+             {
+                 return false;
+             }
+
+
+             return true;*/
+
+
         }
 
 

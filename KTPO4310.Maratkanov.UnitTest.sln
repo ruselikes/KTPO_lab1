@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4310.Maratkanov.UnitTest", "KTPO4310.Maratkanov.UnitTest\KTPO4310.Maratkanov.UnitTest.csproj", "{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPO4310.Maratkanov.UnitTest", "KTPO4310.Maratkanov.UnitTest\KTPO4310.Maratkanov.UnitTest.csproj", "{BF8CCF1B-577E-4C52-AE0C-BECEEA826642}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4310.Maratkanov.Lib", "KTPO4310.Maratkanov.Lib\KTPO4310.Maratkanov.Lib.csproj", "{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPO4310.Maratkanov.Lib", "KTPO4310.Maratkanov.Lib\KTPO4310.Maratkanov.Lib.csproj", "{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4311.Maratkanov.Service", "KTPO4311.Maratkanov.Service\KTPO4311.Maratkanov.Service.csproj", "{7385BB18-2471-425C-A284-D22684AD1C8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE127B2A-CA3F-4B9E-8D39-76EF71511AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7385BB18-2471-425C-A284-D22684AD1C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7385BB18-2471-425C-A284-D22684AD1C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7385BB18-2471-425C-A284-D22684AD1C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7385BB18-2471-425C-A284-D22684AD1C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
