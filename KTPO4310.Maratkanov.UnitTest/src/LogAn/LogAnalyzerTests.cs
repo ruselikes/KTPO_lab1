@@ -59,12 +59,28 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
 
 
         }
+        [Test]
+        public void Analyze_TooShortFileName_CallsWebService()
+        {
+            FakeWebService mockWebService = new FakeWebService();/*создаем Префикс mock в имени переменной для поддельного объекта указывает на то, что поддельный объект используется в качестве подставки*/
+            WebServiceFactory.SetService(mockWebService);
+
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFilename = "abc.ext";
+
+            log.Analyze(tooShortFilename);
+
+            StringAssert.Contains("Имя файла слишком короткое: abc.ext", mockWebService.LastError);
+
+        }
 
         [TearDown]
 
         public void AfterEachTest()
         {
             ExtensionManagerFactory.SetManager(null);
+            WebServiceFactory.SetService(null);
+            EmailServiceFactory.SetService(null);
         }
 
         /*[Test]
@@ -149,5 +165,33 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
             return WillBeValid;
         }
 
+    }
+    /// <summary>
+    /// Поддельная веб-служба
+    /// </summary>
+    internal class FakeWebService : IWebService
+    {   /// <summary>Это поле запоминает состояние после вызова метода LogError </summary>
+        public string LastError;
+        public Exception willThrow = null;
+        public void LogError(string message)
+        {
+            if (willThrow != null)
+            {
+                throw willThrow;
+            }
+            LastError = message;
+        }
+
+    }
+    internal class FakeEmailService : IEmailService
+    {
+        public string Subject;
+        public string To;
+        public string Body;
+
+        public void SendEmail(string to, string subject, string body)
+        {
+            To = to; Subject = subject; Body = body;
+        }
     }
 }
