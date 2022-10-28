@@ -41,24 +41,23 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
         [Test]
         public void IsValidFileName_ExtManagerThrowsException_ReturnsFalse()
         {
-            bool result;
 
-            try
-            {
+
+          
                 FakeExtensionManager fakeManager = new FakeExtensionManager();
                 fakeManager.WillThrow = new Exception("Test-Exception");
                 ExtensionManagerFactory.SetManager(fakeManager);
-                LogAnalyzer log = new();
-                result = log.IsValidLogFileName("WhatADay.ext");
-                result = true;
+
+                LogAnalyzer log = new LogAnalyzer();
 
 
-            }
-            catch (Exception)
-            {
-                result = false;
-            }
-            Assert.False(result);
+                bool result = log.IsValidLogFileName("rdrdr");
+
+                Assert.IsFalse(result);
+                
+
+
+
         }
 
         [TearDown]

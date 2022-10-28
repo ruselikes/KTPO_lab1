@@ -21,9 +21,16 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
         }
         public bool IsValidLogFileName(string fileName)
         {
+            try
+            {
+                IExtensionManager IExtMan = ExtensionManagerFactory.Create();
+                return IExtMan.IsValid(fileName);
 
-            IExtensionManager IExtMan = ExtensionManagerFactory.Create();
-            return IExtMan.IsValid(fileName);
+            }
+           catch(Exception)
+            {
+                return false;
+            }
 
             /* WasLastFileNameValid = false;
              if (string.IsNullOrEmpty(fileName))
