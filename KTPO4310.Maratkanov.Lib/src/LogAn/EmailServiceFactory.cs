@@ -10,6 +10,9 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
     {
         private static IEmailService customEmailService = null;
 
+        /// <summary>
+        /// Создание обьектов фабрикой
+        /// </summary>
         public static IEmailService Create()
         {
             if (customEmailService != null)
@@ -19,7 +22,9 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
 
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Позволяет контролировать, то, что вернет
+        /// </summary>
         public static void SetService(IEmailService srvc)
         {
             customEmailService = srvc;

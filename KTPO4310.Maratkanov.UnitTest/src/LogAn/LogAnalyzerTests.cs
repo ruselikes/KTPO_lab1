@@ -82,7 +82,26 @@ namespace KTPO4310.Maratkanov.UnitTest.src.LogAn
             WebServiceFactory.SetService(null);
             EmailServiceFactory.SetService(null);
         }
+        [Test]
+        public void Analyze_WebServiceThrows_SendsEmail()
+        {
+            FakeWebService stubWebService = new FakeWebService();//создается веб-сервис подделка, возвращающая исключение
+            WebServiceFactory.SetService(stubWebService);
+            stubWebService.willThrow = new Exception("это подделка");
 
+            FakeEmailService mockEmail = new FakeEmailService();
+            EmailServiceFactory.SetService(mockEmail);
+
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFilename = "abc.ext";
+
+            log.Analyze(tooShortFilename);
+
+            StringAssert.Contains("somewhere@mail.com", mockEmail.To);
+            StringAssert.Contains("Невозможно вызвать веб-сервис", mockEmail.Subject);
+            StringAssert.Contains("это подделка", mockEmail.Body);
+
+        }
         /*[Test]
         public void IsValidLogFileName_BadExtension_ReturnsFalse()
         {

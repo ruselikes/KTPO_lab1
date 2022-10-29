@@ -19,7 +19,7 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
             mrg = ExtensionManagerFactory.Create();
             srvc = WebServiceFactory.Create();
 
-            IEmailService  ems = new EmailService()
+            
         }
 
         public void Analyze(string fileName)
@@ -30,18 +30,17 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
                 {
                     //передать внешней службе сообщение об ошибке
                     srvc = WebServiceFactory.Create();
-                    srvc.LogError("Имя файла слишком короткое: " + fileName);
+                    srvc.LogError("Имя файла слишком короткое: " + fileName);//тут фейксервис вызывает исключение
                 }
 
                 catch (Exception e)
                 {
                     //отправить сообщение по эл. почте
-                    //email.SendEmail("somewhere@mail.com", "Невозможно вызвать веб-сервис", e.Message);
-                }
-        }
-            email = EmailServiceFactory.Create();
-            email.SendEmail("somewhere@mail.com", "Unable to call webservice", e.Message);
 
+                    EmailServiceFactory.Create().SendEmail("somewhere@mail.com", "Невозможно вызвать веб-сервис", e.Message);
+                }
+            } 
+        }
             public bool IsValidLogFileName(string fileName)
         {
             try
