@@ -1,8 +1,11 @@
 ﻿
+using KTPO4310.Maratkanov.Lib.src.LogAn;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace KTPO4310.Maratkanov.UnitTest.src.Sample
-{   
+{
+    
     [TestFixture]
     public class SampleTests
     {
