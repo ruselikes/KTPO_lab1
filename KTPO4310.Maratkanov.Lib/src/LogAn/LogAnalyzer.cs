@@ -8,10 +8,14 @@ using System.Threading.Tasks;
 namespace KTPO4310.Maratkanov.Lib.src.LogAn
 {
     ///<summary>Анализатор лог.файлов</summary>
-    public class LogAnalyzer
+    public class LogAnalyzer : ILogAnalyzer
     {
-        /// <summary> Проверка правильности имени к файлу</summary>
-        /// 
+
+
+        public event LogAnalyzerAction Analyzed = null;
+
+
+
         public IExtensionManager mrg;
         public IWebService srvc;
         public LogAnalyzer()
@@ -19,7 +23,7 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
             mrg = ExtensionManagerFactory.Create();
             srvc = WebServiceFactory.Create();
 
-            
+
         }
 
         public void Analyze(string fileName)
@@ -39,9 +43,22 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
 
                     EmailServiceFactory.Create().SendEmail("somewhere@mail.com", "Невозможно вызвать веб-сервис", e.Message);
                 }
-            } 
+            }
+
+            RaiseAnalyzedEvent();
+
+
+
         }
-            public bool IsValidLogFileName(string fileName)
+        //вызов события
+        protected void RaiseAnalyzedEvent()
+        {
+            if (Analyzed != null)
+            {
+                Analyzed();
+            }
+        }
+        public bool IsValidLogFileName(string fileName)
         {
             try
             {
@@ -49,7 +66,7 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
                 return IExtMan.IsValid(fileName);
 
             }
-           catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -68,7 +85,7 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
              return true;*/
 
 
-    }
+        }
 
 
     }
