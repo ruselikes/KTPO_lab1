@@ -44,7 +44,7 @@ namespace KTPO4310.Maratkanov.Lib.src.LogAn
                     EmailServiceFactory.Create().SendEmail("somewhere@mail.com", "Невозможно вызвать веб-сервис", e.Message);
                 }
             }
-
+            //вызов события
             RaiseAnalyzedEvent();
 
 
