@@ -27,7 +27,7 @@ namespace KTPO4310.Maratkanov.UnitTest.src.Sample
             int iExecute = 1;
 
             //Проверка теста
-            mockView.Received().Render(firstCommand.GetType().ToString() + "\niExecute = " + iExecute++);
+            mockView.Received().Render(firstCommand.GetType().ToString() + "\niExecute = " + iExecute);
         }
 
         [Test]
