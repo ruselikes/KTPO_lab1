@@ -50,8 +50,8 @@ namespace KTPO4310.Maratkanov.UnitTest.src.Sample
         {
             //Подготовка теста
             IView mockView = Substitute.For<IView>();
-            ISampleCommand mockSampleCommand = Substitute.For<ISampleCommand>();
-            SampleCommandDecorator sampleCommandDecorator = new SampleCommandDecorator(mockSampleCommand, mockView);
+            ISampleCommand SampleCommand = Substitute.For<ISampleCommand>();
+            SampleCommandDecorator sampleCommandDecorator = new SampleCommandDecorator(SampleCommand, mockView);
 
             //Воздействие на тестируемый объект
             sampleCommandDecorator.Execute();
@@ -66,14 +66,14 @@ namespace KTPO4310.Maratkanov.UnitTest.src.Sample
         {
             //Подготовка теста
             IView mockView = Substitute.For<IView>();
-            ISampleCommand mockSampleCommand = Substitute.For<ISampleCommand>();
-            ExceptionCommandDecorator exceptionCommandDecorator = new ExceptionCommandDecorator(mockSampleCommand, mockView);
+            ISampleCommand SampleCommand = Substitute.For<ISampleCommand>();
+            ExceptionCommandDecorator exceptionCommandDecorator = new ExceptionCommandDecorator(SampleCommand, mockView);
 
             //Воздействие на тестируемый объект
             exceptionCommandDecorator.Execute();
 
             //Проверка теста
-            mockSampleCommand.Received().Execute();
+            SampleCommand.Received().Execute();
         }
 
         [Test]
@@ -81,16 +81,16 @@ namespace KTPO4310.Maratkanov.UnitTest.src.Sample
         {
             //Подготовка теста
             IView mockView = Substitute.For<IView>();
-            ISampleCommand mockSampleCommand = Substitute.For<ISampleCommand>();
+            ISampleCommand SampleCommand = Substitute.For<ISampleCommand>();
             
-            mockSampleCommand.When(x => x.Execute()).Do(context => {  throw new Exception(); });
-            ExceptionCommandDecorator exceptionCommandDecorator = new ExceptionCommandDecorator(mockSampleCommand, mockView);
+            SampleCommand.When(x => x.Execute()).Do(context => {  throw new Exception(); });
+            ExceptionCommandDecorator exceptionCommandDecorator = new ExceptionCommandDecorator(SampleCommand, mockView);
 
             //Воздействие на тестируемый объект
             exceptionCommandDecorator.Execute();
 
             //Проверка теста
-            mockView.Received().Render("Перехват исключений: " + this.GetType().ToString());
+            mockView.Received().Render("Перехват исключений: " + exceptionCommandDecorator.GetType().ToString());
         }
         
         }
